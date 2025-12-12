@@ -1,0 +1,1600 @@
+So I forgot to
+say this before we started,
+
+but it's important as prerequisites to
+know about the system design concepts we
+
+have talked about in this entire series.
+
+Stop looking at this
+diagram because you know,
+
+you're not gonna understand until we
+actually start discussing about it.
+
+And each of these concepts that we are
+gonna discuss now can be, you know,
+
+broken down and gone deeper into.
+
+So all those concepts will require
+prior knowledge that that is going to be
+
+given to you through the videos that
+I made earlier, and also, of course,
+
+through lots of links on the
+internet. So you, it's your choice.
+
+Just make sure that you have your
+basics and fundamentals clear before you
+
+actually jump into actually designing a
+system. Okay, let's start. Hi everyone.
+
+We are finally here. We are
+finally talking about Tinder,
+
+and we are talking about its architecture.
+
+So let's say you enter the interview
+room, you meet the interviewer,
+
+and you sit down. So you're asked to
+design Tinder. Now, in my experience,
+
+I've seen that most candidates get
+really, really into the game. They,
+
+they start thinking about what
+services are they going to use,
+
+what kind of databases are they
+going to use? Take, but, you know,
+
+my suggestion to you would be to take
+a step back and think of this system
+
+in a very logical, calm way. So,
+
+if you have been inventing such a kind
+of an app what's going to come up in your
+
+mind is, what kind of features
+will I provide this person?
+
+And with those features,
+
+what can happen is you can actually
+think about how your system evolves.
+
+Two approaches that you can have for this,
+
+for starting off with this is
+to start with the ER diagram,
+
+which we are taught often
+enough in colleges that,
+
+you know think about how the
+data is gonna be modeled,
+
+and then think about how your services
+are gonna consume them. Finally,
+
+think about what the clients will be
+doing to actually call the services.
+
+So that kind of, that kind of
+thinking is a little too constrained.
+
+It's also too abstract because you're
+thinking about how to model your data
+
+without thinking about
+what do your users need.
+
+The second approach is to go
+from the front to back. That is,
+
+think about what your
+users need as features.
+
+Think about how your services are going
+to actually be broken down so that you
+
+can fulfill these features.
+
+And then think about their
+individual data you know,
+
+requirements per service. So in that
+way, your system is far more flexible.
+
+It's also a lot easier to start off
+with the system immediately with,
+
+with feature development.
+Per feature development.
+
+So the features that we are picking
+up in Tinder are storing profiles.
+
+Alright? So you won't just
+write this down. First of all,
+
+what you could say or what you
+could ask your interviewer is,
+
+so you are definitely gonna
+be storing profiles, right?
+
+So that's an obvious question,
+but best to get it outta the way.
+
+In that profile,
+
+there are going to be images that's
+really important for any dating site.
+
+So one thing to remember
+here is that images will
+
+be stored in the profile. A
+follow-up question can be,
+
+so how many images per user do
+you want? That could be five.
+
+So I'll just note that down. Five images
+
+per user. Is there something
+else we wanna think about?
+
+Images? No, we can move to the
+next feature that might come up,
+
+which is how are we going to
+
+recommend matches Yeah, to look into
+that. But if you think of this in a,
+
+in a storyline, what happens is you go
+to any dating site you make a profile,
+
+and that's how you think
+about storing profiles.
+
+You start accepting or
+rejecting people based on your
+
+preferences. So that would
+be recommendation system.
+
+That would be some sort of recommending
+matches. Yeah. in that case,
+
+what are the questions you can think of?
+How many active users do you have? Is,
+
+is a good question to ask. So,
+
+number of active users.
+
+Is there something else you
+wanna ask? Maybe are there,
+
+are there certain countries where
+there's too much population stuff?
+
+But don't get into too much
+details. Again, if you're,
+
+if you're running behind too many
+questions per feature that also shows that
+
+you're getting into too much detail
+per feature. So keep it fluffy,
+
+keep keep it flying in the air. Even
+now then you have the third feature,
+
+which is the best one, which
+is when you match with someone.
+
+So if you match with someone, you need
+to note that down. And you need to,
+
+you need to do something
+between the two people.
+
+So one of the things you wanna do is you
+wanna note down matches in which case
+
+the number of active
+users is kind of enough.
+
+You can take a percentage of that as the
+number of matches you'll have per day.
+
+That's going to be an assumption.
+
+I'm gonna assume that typical
+Indian match rates are going
+
+to come up here,
+
+which is for every swipe you have a 0.1
+percentage of matching with someone,
+
+right? So the number of matches
+you'll have per person is going to be
+
+0.1%.
+
+So that's gonna be number of active
+users into 10 days to power minus three
+
+matches. And the fourth one is,
+once you have matched with someone,
+
+of course you need to chat with that
+person. So there's direct messaging,
+
+which will be a feature
+of Tinder once you,
+
+once you guys match,
+right? In direct messaging,
+
+what kind of questions should
+you ask? Well, we'll get to that,
+
+we'll get to that. For
+now, we have four features.
+
+Avoid taking too many features because
+it's going to be an hour long interview
+
+at most. And more often than not,
+
+you are going to be getting
+into the details that the
+interview wants you to get
+
+into.
+
+Any ways you don't need to pull out more
+and more features just for the sake of
+
+showing that you know, you
+can implement these. Okay?
+
+So start with four or five features.
+Let's start with so profiles.
+
+So storing profiles. In fact,
+
+the previous video also talked about
+this designing Instagram. There,
+
+there was a lot of jargon that
+a lot of you felt was there.
+
+Storing images has only one
+important question in it, right?
+
+And that is how are you gonna
+store images? So there's
+gonna be a lot of images.
+
+As you can see, number of
+active users are large per user.
+
+You have about five images,
+
+which is still a constant factor
+of the number of active users. And
+
+the,
+
+the question of how are you going to
+store these images is something which has
+
+been debated for a really long time in
+the whole technical field that we are in,
+
+computer science. And that is whether
+you want to store the images as a file
+
+or you want to store the
+images as a blob. Okay?
+
+So blob is a binary large object,
+
+And those of you don't know about this
+get back to your database classes because
+
+this is something which is taught in, in
+engineering. There's also another one,
+
+which is club character, large
+object. And that's entirely useless.
+
+So ignore that. We are gonna be having
+the argument of file versus blob.
+
+So images typically are
+large in size and you
+
+can't store it as a vaca or something.
+
+That's the reason why you
+have a binary large object,
+
+which is specifically for large
+objects in databases. Now,
+
+you might think that databases have
+definitely got a lot more to offer when it
+
+comes to specialized
+storage compared to files,
+
+but my argument is not really, not really,
+
+because the only few extra guarantees
+that a database gives you are
+
+mut ability, okay? You can
+easily mutate the rules in that,
+
+in that database.
+Basically one data entry.
+
+The second one is transaction guarantees.
+
+So transaction guarantees.
+The third one is indexes.
+
+Okay? So indexes are mainly to
+improve your search capabilities,
+
+right? Let's start with mutability.
+
+Are you ever going to be changing
+the image? You could, yes,
+
+but why would you ever want to do that?
+Why not just create a separate file?
+
+Because an update or an image
+is not gonna be just a few bits,
+
+so it's gonna be the entire
+image, basically. Why not?
+
+Why not store that in a separate
+file and get rid of mutability,
+
+make it immutable.
+
+So this is an unnecessary feature
+that the database is giving us.
+
+The second thing is transaction
+properties. So transaction properties are,
+
+again, not required by the by an image,
+
+because you're not going to be doing
+an atomic operation on the image.
+
+So you can get rid of this.
+There's another feature, actually,
+
+I better note that down. So that'll be
+the fourth feature, which is required,
+
+and that is access control.
+
+So yeah, let's get to the
+third one again. Indexes.
+
+Indexes are good for searching.
+
+They allow your data to
+be sorted according to a
+particular field. Let us say,
+
+you know, you have a profile table
+in that the name can be indexed.
+
+So anyone who's searching for goov
+will find that entry quickly because it
+
+binary searches on on the
+name. So for a, for a binary,
+
+any large object,
+
+that's useless because you're now going
+to be searching on the content of the
+
+file. That's gonna be ones and zeros,
+right? So you can get rid of that.
+
+And finally, access control.
+This is very important.
+
+It's one of the arguments for
+databases using binary log objects,
+
+but I would say that you can get
+the same access control mechanisms
+
+using a file system, right?
+
+It is a little tedious maybe,
+but setting up a file system,
+
+a secure file system is almost as tedious
+as setting up a, a, a secure database.
+
+So nearly equal. The good things
+about a file are that it's,
+
+it's cheaper. That makes a big difference.
+
+Storing files the, the other things about
+
+files, which are good, are that
+they are, they're built for this.
+
+They're built for, you know, storing
+a file and an image is a little file.
+
+So that's, that's one good thing,
+but it's a little abstract. Instead,
+
+they're also faster in a
+way because they're storing
+
+large objects separately.
+
+And you can do that in a database using
+something called vertical partitioning,
+
+where the profile ID is
+going to be over here,
+
+and the image ID is gonna be over here,
+
+and then you're going to store
+the image somewhere else.
+
+But if you're doing that, then
+why not store it on the file,
+
+which is not just cheaper,
+
+it's also less likely to
+do a select star nightmare.
+
+So if you do a select star on this table.
+
+.
+
+So instead go for the file system,
+it's gonna take care of that. I mean,
+
+you won't, you won't do a by mistake,
+select star on the address and the id,
+
+okay? This is a little bit of a flimsy
+argument, but it's still, you know,
+
+in practical real life systems,
+select start is used a lot.
+
+So it's one of the good things. The
+third thing is that these are static.
+
+So you can easily build a C D N
+over this content delivery network.
+
+You can read up on this
+maybe in description below.
+You can just read up on it.
+
+In general content delivery Network allows
+
+fast access.
+
+One argument for databases which are
+going to be storing the files. I mean,
+
+at the end of the day, your database
+is going to be storing all your data.
+
+So it has to have some reference,
+some address to your file.
+
+And that is going to be the file, u r l.
+
+Alright? And this will be
+stored in the database.
+
+So we are going to have an image ID
+
+of image U R L and the profile ID
+
+per image stored by user
+with profile ID in location.
+
+So, and so where are you gonna
+store this image? This file?
+
+U l it's going to be in a
+distributed file system, Right?
+
+So your distributed file system is gonna
+be handling requirement number one,
+
+And that's how you argue
+for files versus blobs. Now,
+
+if your interview is really,
+
+really pushing you for blobs
+you could take it, I mean,
+
+it's not gonna really spoil your design,
+
+it's only that it's good to have
+these arguments with you when you are
+
+logically, you know, talking about
+what would be better in an interview.
+
+But don't push too hard. If they say
+that blob is what I want, go for it,
+
+. So taking this first option,
+let's start designing our system.
+
+The first thing to note here is
+that we have a client application on
+
+the mobile.
+
+A user actually clicks a button
+to send us a request, okay?
+
+And over here we have our profile service.
+
+Now, what does it need to do?
+
+It needs to register itself
+with our profile service.
+
+It needs to say here's my username,
+
+here's my password.
+
+And the profile service then
+stores that in the database,
+
+okay? Of course, there's gonna be
+multiple authentication mechanisms.
+
+There's gonna be a
+password sent to the email.
+
+So there might be an email
+service, which you're using here.
+
+But for the sake of brevity,
+
+I'm just gonna assume that the profile
+service can send emails and can do
+
+those two step authentication stuff. Okay?
+
+So once a user is stored in the database,
+
+the user then asks for something,
+
+it's probably going to be update profile
+because they're going to be adding
+
+their photos. So, in update profile
+
+with the username, how do you make sure
+that this is an authenticated request?
+
+The person who's claiming to update that
+profile is the person who that profile
+
+belongs to. There's
+multiple ways to do this.
+
+The monolithic service way goes
+that in the profile service,
+
+you're supposed to have authentication
+mechanisms, making sure that yes,
+
+this update has come from the right user.
+
+So they'll send the username and
+password. And if it is authenticated,
+
+then a successful response goes back
+that yes, there's been an update.
+
+Of course there's multiple issues here.
+
+The first one being that username and
+password is a little too un insecure. So
+
+Instead, we can send a token, right?
+And these are all security mechanisms.
+
+If you mention token, you should be good.
+
+If your interviewer gets too deep
+into cryptography, then best of luck.
+
+But if you have, if you're sending
+a token to the profile service,
+
+it should be able to authenticate
+you and send back a response.
+
+Here's the problem today,
+there's a profile service,
+
+which is actually authenticating
+and sending you back responses.
+
+If there's a new service
+coming up tomorrow,
+
+which doesn't have information
+about tokens and usernames,
+
+then that service is going to be requiring
+to talk to the profile service every
+
+time. And that logic is gonna be
+duplicated in the third service,
+
+which is gonna come up. It
+needs to authenticate the user.
+
+So every time a user sensor
+quest there's gonna be
+
+a lot of duplicated code,
+which is going to be run.
+
+So one of the things you can do
+here is to a standard service,
+
+which most places use,
+
+is to use a gateway.
+
+And the clients always
+talk to the gateway.
+
+No one talks to the clients except the
+gateway. So this is the gateway service,
+
+Alright? And the gateway
+does one thing, essentially,
+
+it just takes this request, the username,
+
+and the token asks the profile service
+whether this is authenticated request or
+
+not. So the profile service, of course,
+
+has information about the user and
+the profile service says yes or no.
+
+A yes or no response tells the gateway
+whether it should respect this request or
+
+not. If it needs to respect this request,
+
+it'll direct it to the correct service,
+otherwise it'll fail the request.
+
+Okay? That's, that's all that the
+gateway does. And once, of course,
+
+it directs it to the correct
+service and it gets a response,
+
+it has to forward that
+response to the client.
+
+What you have done here
+is decoupled systems.
+
+You have taken away this the
+requirement of talking to a user,
+
+and after authenticating sending it to
+the correct service from the profile
+
+service, you move that to a gateway.
+
+Another good thing about this is that
+if you're going to be using some of the
+
+messaging protocols that we get to once
+we are at direct messaging then you have
+
+separated out the protocols over
+here and the protocols over here,
+
+okay? So
+
+Now that we have our profile service,
+
+we are just going to be
+updating the profile.
+
+We are gonna be changing the description,
+
+we are gonna be changing the name
+maybe so on and so forth. Images,
+
+do you really wanna store images in the
+same place that the profile services?
+
+There's no hard yes or no,
+
+but logically you would probably want to
+store the images in a separate service
+
+because tomorrow,
+
+if there's any other service which
+just needs the images of the user,
+
+maybe for machine learning,
+maybe for just, you know,
+
+it just needs the images to
+send it across. So you could,
+
+you could effectively do that
+by using an image service.
+
+.
+
+Rather,
+
+more sensible scenarios when you just
+need the details of that person's profile,
+
+maybe just a description
+or maybe just the age,
+
+and you can send it across easily while
+the image service is used for heavy
+
+computations when you need
+all images of that user.
+
+So image service is going to be, of
+course, having a distributed file system
+
+in which it's gonna be
+storing all the images.
+
+It's also going to be having a database
+in which you have the profile id
+
+and you have the image id,
+
+and you have the u r l of the image being
+stored in this distributed database,
+
+right? So these are references, okay?
+
+So first requirement, done, yay, we are
+taking care of the first requirement,
+
+and what do we do next?
+
+The second requirement was
+recommendations. I wouldn't go for that.
+
+Just I mean, just now, because it's
+a little complicated to get into.
+
+What I would suggest is going for
+direct messaging, which is chat.
+
+So for that,
+
+one of the things you can do is you can
+think about how do I connect from this
+
+client to another client,
+which is over here.
+
+So this client wants
+to talk to this client.
+
+Imagine that you just matched with
+someone and you are gonna send a direct
+
+message. It means that you are gonna
+be telling the gateway that, Hey,
+
+I want to send message to user
+idx. So instead of the update,
+
+it's gonna be message To user
+
+ID one from user ID two.
+So this guy is user ID two,
+
+And this person is user ID
+one. Now, the question is,
+
+how do we send a message
+to this user? There's a,
+
+a lot of people who asked about
+what is X M P P last time?
+
+And if you know about HTT P, which
+is hypertext transfer protocol,
+
+it's, it's mainly a protocol,
+
+a way of talking between two
+machines. And in this way of talking,
+
+there's always going to be a client,
+and there's always gonna be a server.
+
+So a client talks to a server, a
+server responds to that request.
+
+It's never that the server goes
+to the client and says that, Hey,
+
+can you gimme some data? Right?
+So when you have a client
+
+server communication protocol,
+
+you cannot have chat. You
+cannot effectively have chat,
+
+because if there's a client and a server,
+
+the only way that this user is
+going to get the messages that are
+
+sent to them is to pull the server,
+is to say, every five seconds, Hey,
+
+are there any messages for me?
+Hey, are there any messages for me?
+
+And that is extremely inefficient
+from the, from the overall app side.
+
+So you don't wanna pull the server,
+you want messages to be pushed to you,
+
+And you want them to be pushed
+to you, then multiple ways.
+
+You can actually do it with H T P
+also to some extent. But instead,
+
+the better way to do it would
+be to use a different protocol,
+
+a peer-to-peer protocol
+where everyone is equal.
+
+All right? So there's no client
+server. Now this is a machine.
+
+This is a machine that appears and if
+the server needs to send any message to
+
+the client, it can. So one of the
+protocols actually doing this is X M P P,
+
+alright? And one of the clients
+server protocols, of course is H G P.
+
+So make sure you mention this because
+it's it's pretty important to know
+
+how clients and servers talk if, if
+there's a chat application, right?
+
+So this message is gonna also be
+sent through X M P P probably.
+
+So we have discussed how we are going
+to send the message and get the message.
+
+But what's gonna happen
+internally internally,
+
+one of the things that
+could happen is, you know,
+
+the connections that this person, this,
+
+this X M P P is going to
+be taking a connection,
+
+and that's a web socket connection, right?
+
+A lot of this might sound like
+jargon, so study . Yeah. Well,
+
+in a system design interview, you're
+expected to know a few things about this.
+
+Instead of web socket. You could
+also simplify and say that, Hey,
+
+I'm gonna be writing a protocol of my
+own, but it's gonna be T C P. Yeah,
+
+because you make a connection and
+you maintain it. So T C P T C P,
+
+happy, happy. Now with these connections,
+
+you can actually talk to
+the clients. That's good.
+
+Who's going to be maintaining the
+information of these connections as to,
+
+with every connection id,
+
+You need to know which user is
+using this connection, right?
+
+So there's a set of connections on
+the gateway service. Each of these,
+
+each of these users need to use this
+connection to be able to talk to other
+
+users. You need to find out where
+does this user belong? I mean,
+
+which connection is that user
+listening to? And if that is the case,
+
+it could be done by the
+gateway service, but again,
+
+I suggest you decouple the
+system as much as possible.
+
+So you take away responsibilities of
+maintaining connection info from the
+
+gateway service by putting that
+
+in another service, which
+can handle sessions.
+
+So this service is going to
+be handling sessions in your,
+
+in your overall architecture. If
+you are having direct messaging,
+
+this is more than enough because
+it's going to be storing connection,
+
+information, user ID to connection,
+
+right? And with that,
+
+what you can do is you can figure
+out where the other user is stored.
+
+I mean, which connection are they using?
+And send a message to this socket then.
+
+So direct messaging is possible. If
+you do match, things are looking good.
+
+Now, However, of course,
+
+the two requirements that we had, they
+have been taken care of out of the, out,
+
+the four that we had, two of
+them have been taken care of.
+
+The only two remaining are
+noting recommendations.
+
+And the second one is,
+what is the second one?
+
+It's recommending suggestions. I
+mean, recommending people to you.
+
+So noting recommendations.
+Let's quickly go over it.
+
+Let's say that you have the client,
+right? It can store information.
+
+It's, it's an app, it
+can store information.
+
+Why not have all of that information
+as to who you are matched with or
+
+who you have asked to be matched
+with stored on the client?
+
+Are there any pros? Are there
+any pros and cons? Yeah,
+
+are there any cons to
+this, this thing? Well,
+
+one of the cons is that the server
+should be the source of truth.
+
+You should have the server knowing
+everything, and you can then rebuild on,
+
+on that. I mean,
+
+in case a client loses all the
+information in case they install,
+
+uninstall their app, the
+server has all the information,
+
+but what kind of information are you
+losing when you're noting down matches?
+
+If you match with someone, send
+that to the server, say that, Hey,
+
+I matched with this person that's gonna
+be probably sent to the profile service.
+
+Maybe it could, it could handle that,
+or it could be a matcher service,
+
+Which just keeps a table
+of user ID to user id,
+
+which means this user has
+matched with this person. Now,
+
+indexes, like we talked about,
+
+are going to be put on each
+user ID over here, right? So
+
+in fact, you can put it on both,
+
+but I'll just put it over here
+and you can duplicate the records.
+
+So A matched with B means B also matched
+with A, and you can keep it that way.
+
+Now the macho is going to be checking
+if you are matched with a particular
+
+person that can tell the session
+service whether you are authenticated
+
+to actually send this message to
+that person, a direct message.
+
+So there will be some communication
+between the macho and sessions.
+
+So in case there's a message being sent,
+
+it's first gonna be sent actually to
+the macho, which will confirm that yes,
+
+you have, you have been
+validated to send this message,
+
+sends it to the sessions, which then sends
+
+the, the information as to where,
+which connection you have to use,
+
+and then you can always send
+it to the right place, right?
+
+So it's a pretty long process. You might
+find a better way to do it, but in a,
+
+in general, this is fine.
+This looks fine. Okay? Hmm.
+
+So we are talking about noting matches.
+If we need to note down the matches,
+
+the matches service can note down
+all the matches that you have.
+
+If the app is installed,
+when it is it reinstalled,
+
+it'll pull out all the matches
+you have from the macho,
+
+make sure that you can chat with them.
+
+Your profile is going to be
+pulled out of this service.
+
+And the only information you're going to
+lose is the number of people you swipe
+
+swiped left or right. Is that
+critical information? No,
+
+because you should get a chance, again,
+
+to swipe a person right or left in
+case you've already done that earlier.
+
+So you are going to get read
+recommendations of the same person.
+
+So that takes care of
+requirement number three.
+
+We are storing all information
+relevant to the number of matches
+
+you have had on this mattress service.
+
+And all information relevant to who
+you have swiped left or right inside
+
+your cell phone. And in case you uninstall
+it too bad, you have to do it again.
+
+That's all not that big a loss. So
+three requirements taken care of,
+
+that's good.
+
+The final requirement we are going to
+be looking into is a little complicated.
+
+It's about recommending people to you.
+
+And let's see how we can actually
+put it in this architecture.
+
+The biggest problem with recommendation
+will be to figure out who are the users
+
+close to me? So I can figure out quite
+easily which genders I'm interested in.
+
+Which age group am I interested
+in using just indexes.
+
+But when you look at this number of users,
+
+you have a million active users
+you have to per user figure out
+
+which person is close to me, right?
+
+That is the core of all
+recommendations in this system.
+
+So the profile service
+could have in its database,
+
+I mean the name of the person and all
+those things, but they also have the age.
+
+That's good. We also
+need the gender, right?
+
+And we also need another thing, which
+is the location. So based on age,
+
+gender, and location, these three
+things we need to make decisions. Now,
+
+a lot of people would probably come to
+the conclusion that why not put indexes
+
+on all three? Okay? And this
+is a common misconception.
+
+You cannot have multiple
+indexes. Basically,
+
+you cannot have the data sorted
+in multiple ways in one database
+
+table. So if it is sorted by
+age, and it is sorted by gender,
+
+and it is sorted by location, when
+you're going to be making a query,
+
+it's only going to use one
+of those indexes. Okay?
+
+So it might use the gender index,
+maybe I'm interested in females.
+
+So the female category will
+be picked up by the database.
+
+It'll be made efficient that only females
+will be picked up in just one shot
+
+because there's a, there's a binary
+search going on over there. And in that,
+
+I'll have to search for people within
+a particular range. And in that,
+
+I'll again have to search for
+people within a particular location.
+
+So it depends on what the database picks
+up as the single index that you have.
+
+But because it depends on the database,
+
+because it depends on the database
+optimizer, query optimizer,
+
+it's outta your control, right?
+Pretty much. So, I mean, you can,
+
+you can suggest the query optimizer,
+
+but what I'm getting to is that
+you need to optimize on multiple
+
+parameters, and you can
+effectively do it only on just one.
+
+So in this case,
+
+what happens is you need
+to use either a NoSQL
+
+database like Cassandra,
+
+which is really good at querying for
+these kind of data types. You know,
+
+you just replicate the data in multiple
+places, and depending on the query,
+
+you build a table on that query, and
+then you can have an efficient query.
+
+So one of the things about the
+recommendation database is you could
+
+have a, you could have a
+distributed database, which
+is something like Cassandra
+
+Or Amazon Dynamo, okay?
+
+That's the first solution.
+
+The second solution is if a person
+is not very comfortable moving onto a
+
+distributed database,
+
+you could use the same
+concepts kind of on a
+
+relational database. And that
+requires something called sharding,
+
+also known by the veterans as horizontal
+
+party. Shun in horizontal.
+
+Parting means you take
+some property of a data,
+
+basically you set ranges in one,
+
+in one column, and you direct data
+to a location based on that range.
+
+So a lot of fluff that I just talked
+about, what about name, right?
+
+All users having the name
+starting from A to J are going
+
+to go to database. Node number 36,
+
+all users having it from K to P
+are going to database node number
+
+79. Now you see what's happening here.
+
+I'm partitioning the data based on
+its value to different locations.
+
+And in this case, what happens is when
+I'm going to be querying the data,
+
+I can easily figure out what's
+the name of this person? Oh,
+
+then it must exist in database
+number. So and so, Right?
+
+Partitioning as a concept is
+really useful. One of the,
+
+one of the ways that you can partition
+data is sharding or horizontal parting.
+
+So I would suggest you have a look at
+the consistent hashing thing. Anyway,
+
+this is consistent hashing is gonna
+be critical to keeping your servers
+
+functioning. So after that, you
+can also have a look at sharding,
+
+which I'll probably take a video
+on sometime, but that's it,
+
+that's what charting is.
+
+You just do horizontal partitioning
+and based on your value,
+
+you're going to go to a
+particular node. As usual.
+
+What about the single point of
+failure? What if this node crashes?
+
+Are all users from K to P
+going to fail? I mean, the,
+
+are the requests going to fail? No, you
+can have a master slave architecture.
+
+Sure. So if the master
+fails, the slave comes up.
+
+If the slave fails, then you're
+happy. , no, I mean,
+
+the slave failing has a
+really low probability because
+both of them have failed
+
+at the same time. You can
+bring up a node in between.
+
+So that is sort of how you are going
+to be doing the horizontal partitioning
+
+per, per partition. You can have a master
+slave or multiple masters and slaves,
+
+but then you know, you,
+
+you need to convince your interviewer
+as to why you're choosing sharding,
+
+which is a little
+complicated, versus using a,
+
+using a database like Cassandra or Dynamo,
+
+which is going to give you all of
+those features in one shot. Okay? Now,
+
+why am I using sharding? Why
+am I using Cassandra? I mean,
+
+why am I talking about
+all this? I'm so sorry.
+
+The reason I'm doing this is
+because you need to shard the
+
+data based on the location
+that that person is in.
+
+So it doesn't need to be necessarily a
+city. It could be chunks of that city.
+
+You can, you can figure out that, okay,
+
+a person within this location
+is within this chunk,
+
+and if it is within this chunk, they
+are being sharded to a particular node,
+
+okay? Based on that chunk. Therefore,
+you can easily pull out data. Also,
+
+you can pull this data out all users
+within that chunk and then search
+
+amongst it within the age and the gender
+
+variables.
+
+So each of these databases can actually
+have the age sorted and you can query on
+
+the age. And then finally you just filter
+out the genders that the person is not
+
+interested in. Okay?
+
+So this is the kind of stuff
+that you could do basically to
+
+improve your recommendation engine.
+
+Your recommendation engine is gonna
+be simple enough, it's gonna be
+
+a recommendation service.
+
+All it does is it pulls
+out all relevant people,
+
+maybe from the same profile service thing,
+
+or it could just be storing
+the user IDs and the locations,
+
+the current location, this current
+location can be updated every hour,
+
+every two hours, every three
+hours. Depends on the client.
+
+It can push that thing, or
+the number of pushes it makes,
+
+doesn't matter only after an hour, you
+are gonna make an update to the location,
+
+and based on this location,
+
+you're going to be serving
+users for that particular user.
+
+Alright? Okay. If all, any of this is
+going, you know, seeming too complicated,
+
+it's fine. It may not be the right time
+to just start off with billing systems.
+
+But you can, you can get the general
+gist of what's happening if you're,
+
+if you're able to break this
+system down into pieces,
+
+and if you're able to essentially
+partition and partition and remove single
+
+points of failure and figure out how
+these features are going to be done using
+
+interactions with each of these services,
+then you're doing well. Alright,
+
+good job, good job. And
+that's pretty much it. I,
+
+I think that takes care of the second
+point also of recommending people
+
+you can recommend using this way that
+takes care of all four points, in fact.
+
+And Tinder is one of these services,
+
+which in fact seems quite simple and,
+
+and is because there's not so much of a
+newsfeed that you need to take care of.
+
+There's not really a lot of,
+
+a lot of social interactions going
+on. Like, it's not group messaging,
+
+it's just direct messaging. So
+it's a nice system to start with.
+
+I think it's one of the interesting
+systems I felt that I should start with.
+
+And if you have any suggestions or if
+you feel like there was something that we
+
+missed out on definitely
+leave them the comments below.
+
+I think we are gonna have a really
+fruitful discussion in the comments below
+
+after this. And if you
+have any doubts on this,
+
+feel free to ask. I'll
+try to post as needed,
+
+relevant sources in the
+description. If you like this video,
+
+then you can just hit the like button
+and also just subscribe to the channel,
+
+because I'll be posting on
+similar services all the time,
+
+. So yeah, that also gives me the,
+
+the question as to which
+service do you guys wanna see?
+
+Do you wanna see Instagram, Twitter?
+It's up to you guys. I mean,
+
+basically just leave a comment or maybe
+I'll take a poll. That'll be easier.
+
+Just make sure that you subscribe so you
+get a notification for the poll. Also,
+
+others I have to ask every time,
+ and I'll see you then next time.
+
+

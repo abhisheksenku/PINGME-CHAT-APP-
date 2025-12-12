@@ -1,0 +1,331 @@
+/* --- 1. General Setup & Variables --- */
+:root {
+  --body-color: #e4e9f7;
+  --sidebar-color: #fff;
+  --primary-color: #695cfe;
+  --primary-hover-color: #7b6ffd;
+  --primary-color-light: #f6f5ff;
+  --text-color: #707070;
+  --text-color-light: #ccc;
+  --title-color: #333;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --tran-03: all 0.3s ease;
+}
+
+body.dark-mode {
+  --body-color: #18191a;
+  --sidebar-color: #242526;
+  --primary-color-light: #3a3b3c;
+  --text-color: #ccc;
+  --title-color: #fff;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--body-color);
+  color: var(--text-color);
+  line-height: 1.7;
+  transition: var(--tran-03);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 80px; /* Space for fixed navbar */
+}
+
+h1,
+h2,
+h3 {
+  color: var(--title-color);
+  font-weight: 600;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+}
+
+/* --- 2. Navbar --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: var(--body-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: var(--tran-03);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar .logo img {
+  max-width: 40px;
+  height: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.dark-mode-toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--title-color);
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--title-color);
+}
+
+.btn {
+  padding: 8px 16px;
+  border: 1px solid var(--primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  background: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  transition: var(--tran-03);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn.signup {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn.signup:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.btn.login:hover {
+  background-color: var(--primary-color-light);
+}
+
+/* --- 3. Description (Hero) Section --- */
+.description {
+  width: 95%;
+  margin: 0 auto;
+  min-height: 90vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("/images/mother_daughter.png");
+  background-size: cover;
+  background-position: top center;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  color: #fff;
+}
+
+.description-text {
+  max-width: 550px;
+}
+
+.description-text h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.description-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+/* --- 4. Features Section --- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 3rem 50px;
+}
+
+.feature-box {
+  background: var(--sidebar-color);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  transition: var(--tran-03);
+  cursor: pointer;
+}
+
+.feature-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-box .fas {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* --- 5. "How It Works" Section --- */
+.how-it-works {
+  padding: 3rem 50px;
+  background: var(--primary-color-light);
+}
+.steps-container {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  gap: 2rem;
+}
+.step {
+  max-width: 300px;
+}
+.step-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* --- 6. Testimonials Section --- */
+.testimonials {
+  padding: 3rem 50px;
+}
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+.testimonial-card {
+  background: var(--sidebar-color);
+  padding: 1.5rem;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow);
+}
+.testimonial-card p {
+  font-style: italic;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+.testimonial-author img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --- 7. Footer --- */
+.footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  background-color: var(--primary-color-light);
+}
+.footer .logo img {
+  max-width: 40px;
+  height: auto;
+}
+.social-links a {
+  margin: 0 10px;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  transition: var(--tran-03);
+}
+.social-links a:hover {
+  color: var(--primary-color);
+}
+
+/* --- 8. Responsive Design --- */
+@media (max-width: 992px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  .nav-links {
+    position: fixed;
+    top: 70px; /* height of navbar */
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: var(--body-color);
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    transition: var(--tran-03);
+  }
+  .nav-links.active {
+    left: 0;
+  }
+  .nav-buttons {
+    flex-direction: column;
+  }
+  .hamburger {
+    display: block;
+  }
+  .dark-mode-toggle {
+    margin-right: 15px;
+  }
+
+  .features,
+  .how-it-works,
+  .testimonials {
+    padding: 3rem 20px;
+  }
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .description {
+    padding: 0 20px;
+    text-align: center;
+  }
+  .description-text h1 {
+    font-size: 2.5rem;
+  }
+}

@@ -1,0 +1,113 @@
+---
+
+## 1. Header (Navigation Bar)
+
+This section is the main navigation bar at the top of the page.
+
+* **Main Element:** `<header>`
+* **Key Class:** `navbar`
+* **Sub-components:**
+    * `div.logo`: Contains the logo `<img>` and "PingMe" text.
+    * `div.nav-links`: The main container for navigation buttons.
+        * **ID:** `nav-links` (likely used by JavaScript to show/hide the menu on mobile).
+    * `div.nav-buttons`: A wrapper for the login/signup buttons.
+        * `button.btn.login`: The "Log In" button.
+        * `button.btn.signup`: The "Sign Up" button.
+    * `i.dark-mode-toggle`: The moon icon to toggle dark mode.
+        * **ID:** `dark-mode-toggle` (used by JavaScript).
+    * `i.hamburger`: The hamburger menu icon (for mobile).
+        * **ID:** `hamburger` (used by JavaScript).
+
+---
+
+## 2. Description ("Hero" Section)
+
+This is the main "hero" section at the top, designed to grab the user's attention.
+
+* **Main Element:** `<section>`
+* **Key Class:** `description`
+* **Sub-components:**
+    * `div.description-text`: A wrapper holding the text content.
+    * `<h1>`: The main headline: "Message privately, connect freely."
+    * `<p>`: The sub-headline or description.
+    * `button.btn.signup`: The main "Sign Up" call-to-action button.
+
+---
+
+## 3. Features Section
+
+This section is a grid that lists the key features of the application.
+
+* **Main Element:** `<section>`
+* **Key Class:** `features`
+* **Sub-components:**
+    * This section contains **6 identical** `div.feature-box` elements.
+    * **Structure of each `div.feature-box`:**
+        * `<i>`: A Font Awesome icon (e.g., `fas.fa-comment-dots`).
+        * `<h3>`: The feature title (e.g., "Fast Messaging").
+        * `<p>`: A short description of the feature.
+
+---
+
+## 4. How It Works Section
+
+This section provides a simple 3-step guide on how to get started.
+
+* **Main Element:** `<section>`
+* **Key Class:** `how-it-works`
+* **Sub-components:**
+    * `h2.section-title`: The main title for this section.
+    * `div.steps-container`: A flex or grid container holding the steps.
+    * This container has **3 identical** `div.step` elements.
+    * **Structure of each `div.step`:**
+        * `<i>`: A Font Awesome icon with the `step-icon` class.
+        * `<h3>`: The step title (e.g., "1. Create Account").
+        * `<p>`: A short description of the step.
+
+---
+
+## 5. Testimonials Section
+
+This section displays social proof using cards with user quotes.
+
+* **Main Element:** `<section>`
+* **Key Class:** `testimonials`
+* **Sub-components:**
+    * `h2.section-title`: The main title for this section.
+    * `div.testimonial-grid`: A container for the testimonial cards.
+    * This grid contains **2 identical** `div.testimonial-card` elements.
+    * **Structure of each `div.testimonial-card`:**
+        * `<p>`: The user's quote.
+        * `div.testimonial-author`: A wrapper for the author's info.
+            * `<img>`: The author's profile picture.
+            * `<div>`: A text wrapper holding:
+                * `<strong>`: The author's name.
+                * `<small>`: The author's title or job.
+
+---
+
+## 6. Footer
+
+This is the final section at the bottom of the page.
+
+* **Main Element:** `<footer>`
+* **Key Class:** `footer`
+* **Sub-components:**
+    * `div.logo`: Re-uses the `logo` class from the header.
+    * `<p>`: The copyright text.
+    * `div.social-links`: A wrapper for social media icons.
+        * `<a>`: Anchor tags wrapping Font Awesome `<i>` icons (e.g., `fab.fa-twitter`).
+
+---
+
+## Assets & Scripts
+
+These are the non-visible files loaded in the `<head>` and at the end of the `<body>`.
+
+* **Fonts:**
+    * Google Fonts (`Poppins`)
+    * Font Awesome (for icons)
+* **CSS:**
+    * `/css/page.css`: Your custom stylesheet that defines all the classes above.
+* **JavaScript:**
+    * `/js/page.js`: The script that will handle the hamburger menu, dark mode, and any other interactions.

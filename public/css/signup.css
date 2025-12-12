@@ -1,0 +1,166 @@
+:root {
+  --sidebar-color: #ffffff;
+  --icon-color: #8a92a6;
+  --icon-hover: #5a42e4;
+  --sidebar-width: 80px;
+  --icon-size: 26px;
+  --midsection-color: #f8f9fa;
+  --midsection-width: 400px;
+  --body-color: #eef2f5;
+  --primary-color: #6a55ea;
+  --primary-gradient: linear-gradient(135deg, #6a55ea 0%, #8055e8 100%);
+  --primary-color-light: #f0edff;
+  --primary-color-hover: #e9e6ff;
+  --primary-color-dark: #5a42e4;
+  --text-color: #212529;
+  --text-secondary-color: #6c757d;
+  --status-unread-border: #20d46d;
+  --status-viewed-border: #ced4da;
+  --main-bg-color: #e9ecef;
+  --sent-message-bg: #e0f1d0;
+  --received-message-bg: #ffffff;
+  --danger-color: #f44336;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+  --tran-02: all 0.2s ease-in-out;
+  --tran-03: all 0.3s ease-in-out;
+  --tran-04: all 0.4s ease-in-out;
+  --tran-05: all 0.5s ease-in-out;
+}
+/* ===== Global Reset & Fonts ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--body-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Main Container ===== */
+.main-container {
+  display: flex;
+  max-width: 800px;
+  width: 90%;
+  background: var(--sidebar-color);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ===== Left Panel ===== */
+.left-panel {
+  flex: 1;
+  background-color: var(--sidebar-color);
+  color: var(--primary-color);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-panel h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.left-panel p {
+  font-size: 16px;
+  color: var(--text-secondary-color);
+}
+
+/* ===== Form Container ===== */
+.form-container {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 16px;
+  border: 1px solid var(--status-viewed-border);
+  border-radius: 6px;
+  outline: none;
+  transition: var(--tran-02);
+  background-color: var(--sidebar-color);
+}
+
+.input-group input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px var(--primary-color-light);
+}
+
+.input-group label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: var(--sidebar-color);
+  padding: 0 4px;
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+/* ===== Button ===== */
+button[type="submit"] {
+  padding: 12px;
+  width: 100%;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--tran-03);
+  box-shadow: var(--shadow-sm);
+}
+
+button[type="submit"]:hover {
+  background: var(--primary-color-dark);
+}
+
+/* ===== Footer Text ===== */
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text-secondary-color);
+}
+
+.text-center a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: var(--tran-02);
+}
+
+.text-center a:hover {
+  color: var(--primary-color-dark);
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .left-panel {
+    text-align: center;
+  }
+}

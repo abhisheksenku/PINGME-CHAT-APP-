@@ -1,0 +1,52 @@
+---
+
+## 1. Main Container
+
+This is the top-level wrapper that holds the two main columns of the page.
+
+* **Main Element:** `<div>`
+* **Key Class:** `main-container`
+
+---
+
+## 2. Left Panel (Branding/Title)
+
+This section acts as the left-hand column, likely for branding, a title, or a welcome message.
+
+* **Main Element:** `<div>`
+* **Key Class:** `left-panel`
+* **Sub-components:**
+    * `<h2>`: The main heading "Sign Up".
+    * `<p>`: A sub-heading or instruction.
+
+---
+
+## 3. Form Container (Main Interaction)
+
+This is the right-hand column that contains the actual sign-up form.
+
+* **Main Element:** `<div>`
+* **Key Class:** `form-container`
+* **Sub-components:**
+    * `<form>`: The main form element.
+        * **ID:** `signupForm` (This is the **key selector** your JavaScript will use to catch the 'submit' event).
+    * **Input Groups:** The form contains **4 identical** `div.input-group` elements. This is a common pattern for styling labels and inputs together.
+        * **Structure of each `div.input-group`:**
+            * `<input>`: The text field. Each has a unique `id` (e.g., `name`, `email`), a `name` attribute (for sending data), and is set to `required`.
+            * `<label>`: The label for the input. The `for` attribute (e.g., `for="name"`) correctly matches the input's `id`.
+    * `<button type="submit">`: The main "Sign Up" button that submits the form.
+    * `<p class="text-center">`: A paragraph *after* the form.
+        * `<a>`: A link pointing to the login page (`/login`).
+
+---
+
+## 4. Assets & Scripts
+
+These are the external files loaded at the end of the `<body>`.
+
+* **CSS:**
+    * `/css/signup.css`: The custom stylesheet that defines all the classes above.
+* **JavaScript:**
+    * `axios.min.js`: The Axios library for making API requests (this will be used to send the form data to your server).
+    * `/js/config.js`: (Likely contains your `BASE_URL` or other configuration).
+    * `/js/signup.js`: The script that will handle the `signupForm` submission, send the data with Axios, and redirect the user.

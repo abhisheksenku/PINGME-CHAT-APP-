@@ -1,0 +1,54 @@
+---
+
+## 1. Main Container
+
+This is the top-level `div` that wraps the entire page, holding the left and right panels.
+
+* **Main Element:** `<div>`
+* **Key Class:** `main-container`
+
+---
+
+## 2. Left Panel (Branding/Title)
+
+This is the left column, serving as the welcome area.
+
+* **Main Element:** `<div>`
+* **Key Class:** `left-panel`
+* **Sub-components:**
+    * `<h2>`: The main heading "Welcome Back!".
+    * `<p>`: A sub-heading with instructions.
+
+---
+
+## 3. Form Container (Main Interaction)
+
+This is the right column that contains the login form itself.
+
+* **Main Element:** `<div>`
+* **Key Class:** `form-container`
+* **Sub-components:**
+    * `<form>`: The main form element.
+        * **ID:** `loginForm` (This is the **key selector** your JavaScript will use to catch the 'submit' event).
+    * **Input Groups:** The form has **2 identical** `div.input-group` elements.
+        * **Structure of each `div.input-group`:**
+            * `<input>`: The text field (for email and password). Each has a unique `id` and `name`.
+            * `<label>`: The label for the input, with a `for` attribute matching the input's `id`.
+    * `<p class="forgot-password">`: A paragraph holding the "Forgot Password?" link.
+        * `<a>`: A link pointing to `/forgot-password`.
+    * `<button type="submit">`: The "Log In" button that submits the `loginForm`.
+    * `<div class="text-center">`: A wrapper for the "Sign Up" link at the bottom.
+        * `<p>`: Contains the text and the `<a>` link pointing to `/signup`.
+
+---
+
+## 4. Assets & Scripts
+
+These are the files loaded at the end of the `<body>` to add functionality.
+
+* **CSS:**
+    * `/css/login.css`: The custom stylesheet that defines all the classes used above.
+* **JavaScript:**
+    * `axios.min.js`: The Axios library, which will be used to send the login data to your server.
+    * `/js/config.js`: (Likely contains your `BASE_URL`).
+    * `/js/login.js`: The script that will handle the `loginForm` submission, send the data via Axios, and (on success) save the token and redirect the user.

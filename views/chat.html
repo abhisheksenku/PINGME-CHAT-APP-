@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PingMe - Chat Application</title>
+    <!-- Boxicons CSS for icons -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for the plus icon in status -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/chat.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- ========================== SIDEBAR ========================== -->
+      <aside class="sidebar">
+        <nav>
+          <ul class="menu-links">
+            <li id="chats-tab" class="active">
+              <button aria-label="Chats">
+                <i class="bx bx-chat icon"></i>
+              </button>
+            </li>
+            <li id="status-tab">
+              <button aria-label="Status">
+                <i class="bx bx-check-circle icon"></i>
+              </button>
+            </li>
+            <li id="contacts-tab">
+              <button aria-label="Contacts">
+                <i class="bx bxs-contact icon"></i>
+              </button>
+            </li>
+          </ul>
+          <ul class="bottom-links">
+            <li>
+              <button id="profile-button" aria-label="Profile">
+                <img
+                  src="https://placehold.co/40x40/695cfe/ffffff?text=A"
+                  alt="Your profile picture"
+                  id="sidebar-profile-pic"
+                  class="profile-avatar user-profile-pic"
+                />
+              </button>
+            </li>
+            <li class="toggle-mode">
+              <button aria-label="Toggle dark mode">
+                <i id="modeIcon" class="bx bx-moon icon"></i>
+              </button>
+            </li>
+            <li>
+              <button id="settings-button" aria-label="Settings">
+                <i class="bx bx-cog icon"></i>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- ======================= MIDDLE SECTION (LISTS) ======================= -->
+      <section class="midsection">
+        <!-- This header is only for tabs, it gets hidden for settings -->
+        <header id="main-midsection-header" class="midsection-header">
+          <div class="header-content">
+            <div class="logo">PingMe</div>
+            <div class="header-icons">
+              <button id="new-chat-btn" class="new-chat-btn">
+                <i class="bx bxs-edit"></i>
+              </button>
+              <div class="mobile-options">
+                <button id="mobile-menu-btn" class="mobile-options-btn">
+                  <i class="bx bx-dots-vertical-rounded"></i>
+                </button>
+                <div class="mobile-menu" id="mobile-menu">
+                  <ul>
+                    <li id="mobile-new-group">
+                      <i class="bx bx-group"></i> New Group
+                    </li>
+
+                    <li id="mobile-profile-btn">
+                      <i class="bx bx-user"></i> Profile
+                    </li>
+                    <li id="mobile-darkmode-btn">
+                      <i class="bx bx-moon"></i>
+                      <span>Dark Mode</span>
+                    </li>
+                    <li id="mobile-settings-btn">
+                      <i class="bx bx-cog"></i> Settings
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="search-box">
+            <i class="bx bx-search icon"></i>
+            <input type="text" placeholder="Search..." />
+          </div>
+          <div class="new-chat-menu" id="new-chat-menu">
+            <ul>
+              <li id="menu-new-group"><i class="bx bx-group"></i> New Group</li>
+            </ul>
+          </div>
+        </header>
+
+        <!-- CHATS CONTENT PANEL -->
+        <div id="chats-content" class="content-panel active">
+          <ul class="chat-list-items"></ul>
+        </div>
+
+        <!-- STATUS CONTENT PANEL -->
+        <div id="status-content" class="content-panel">
+          <ul>
+            <li
+              id="add-status-link"
+              class="status-link"
+              data-name="My status"
+              data-img="https://placehold.co/50x50/695cfe/ffffff?text=A"
+            >
+              <div class="my_status">
+                <img
+                  src="https://placehold.co/50x50/695cfe/ffffff?text=A"
+                  alt="Your profile picture"
+                  id="status-profile-pic"
+                  class="user-profile-pic"
+                />
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </div>
+              <div class="status_contact">
+                <h4>My status</h4>
+                <p>Tap to add or view status</p>
+              </div>
+            </li>
+          </ul>
+          <h3>Recent updates</h3>
+          <ul>
+            <li
+              class="status-link"
+              data-name="Sophia"
+              data-img="https://placehold.co/50x50/3cb371/ffffff?text=S"
+            >
+              <div class="my_status recent">
+                <img
+                  src="https://placehold.co/50x50/3cb371/ffffff?text=S"
+                  alt="Sophia's status"
+                />
+              </div>
+              <div class="status_contact">
+                <h4>Sophia</h4>
+                <time>5 minutes ago</time>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- 2. Midsection Categories Panel -->
+        <div id="contacts-content" class="content-panel">
+          <ul class="settings-list">
+            <li
+              class="settings-item contact-category"
+              data-category="receivedRequests"
+            >
+              <i class="bx bx-user-plus"></i>
+              <h4>Friend Requests</h4>
+              <span class="contact-badge"></span>
+              <ul id="received-requests-list" class="contact-list"></ul>
+            </li>
+            <li
+              class="settings-item contact-category"
+              data-category="availableUsers"
+            >
+              <i class="bx bx-bulb"></i>
+              <h4>Suggestions</h4>
+              <span class="contact-badge"></span>
+              <ul id="suggestions-list" class="contact-list"></ul>
+            </li>
+            <li class="settings-item contact-category" data-category="friends">
+              <i class="bx bx-group"></i>
+              <h4>Friends</h4>
+              <span class="contact-badge"></span>
+              <ul id="friends-list" class="contact-list"></ul>
+            </li>
+            <li
+              class="settings-item contact-category"
+              data-category="sentRequests"
+            >
+              <i class="bx bx-send"></i>
+              <h4>Sent Requests</h4>
+              <span class="contact-badge"></span>
+              <ul id="sent-requests-list" class="contact-list"></ul>
+            </li>
+            <li
+              class="settings-item contact-category"
+              data-category="blockedUsers"
+            >
+              <i class="bx bx-block"></i>
+              <h4>Blocked</h4>
+              <span class="contact-badge"></span>
+              <ul id="blocked-users-list" class="contact-list"></ul>
+            </li>
+          </ul>
+        </div>
+        <!-- PROFILE EDIT PANEL -->
+        <div id="profile-settings-content" class="content-panel">
+          <header class="settings-header">
+            <button
+              id="back-button-profile"
+              class="back-btn"
+              aria-label="Go back"
+            >
+              <i class="bx bx-arrow-back"></i>
+            </button>
+            <h3>Profile</h3>
+          </header>
+          <div class="profile-edit-area">
+            <div class="profile-picture-edit">
+              <img
+                src="https://placehold.co/120x120/695cfe/ffffff?text=A"
+                alt="Your profile picture"
+                id="profile-edit-pic"
+                class="user-profile-pic"
+              />
+              <button class="change-pic-btn">
+                <i class="bx bx-camera"></i> Change Picture
+              </button>
+            </div>
+            <form class="profile-form">
+              <div class="form-group">
+                <label for="profile-name">Your Name</label>
+                <input type="text" id="profile-name" value="Alex Smith" />
+              </div>
+              <div class="form-group">
+                <label for="profile-about">About</label>
+                <textarea id="profile-about">Write about yourself.</textarea>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <p class="email-display" id="profile-email">
+                  alex.smith@example.com
+                </p>
+              </div>
+              <button type="submit" class="save-btn">Save Changes</button>
+            </form>
+            <hr />
+
+            <form id="update-password-form" class="profile-form">
+              <h4>Change Password</h4>
+              <div class="form-group">
+                <label for="current-password">Current Password</label>
+                <input type="password" id="current-password" required />
+              </div>
+              <div class="form-group">
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" required />
+              </div>
+              <div class="form-group">
+                <label for="confirm-password">Confirm New Password</label>
+                <input type="password" id="confirm-password" required />
+              </div>
+              <button type="submit" class="save-btn">Update Password</button>
+            </form>
+
+            <hr />
+
+            <div class="danger-zone">
+              <h4>Danger Zone</h4>
+              <p>
+                Once you delete your account, there is no going back. Please be
+                certain.
+              </p>
+              <button id="delete-account-btn" class="delete-btn">
+                Delete Your Account
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GENERAL SETTINGS PANEL -->
+        <div id="general-settings-content" class="content-panel">
+          <header class="settings-header">
+            <button
+              id="back-button-settings"
+              class="back-btn"
+              aria-label="Go back"
+            >
+              <i class="bx bx-arrow-back"></i>
+            </button>
+            <h3>Settings</h3>
+          </header>
+          <div class="general-settings-area">
+            <ul>
+              <li class="settings-item">
+                <i class="bx bxs-bell"></i>
+                <h4>Notifications</h4>
+              </li>
+              <li class="settings-item">
+                <i class="bx bxs-lock-alt"></i>
+                <h4>Privacy</h4>
+              </li>
+              <li class="settings-item">
+                <i class="bx bxs-paint"></i>
+                <h4>Appearance</h4>
+              </li>
+              <li class="settings-item">
+                <i class="bx bxs-help-circle"></i>
+                <h4>Help</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- NEW GROUP PANEL -->
+        <div id="new-group-content" class="content-panel">
+          <header class="settings-header">
+            <button
+              id="back-button-group"
+              class="back-btn"
+              aria-label="Go back"
+            >
+              <i class="bx bx-arrow-back"></i>
+            </button>
+            <h3>New Group</h3>
+          </header>
+          <div class="profile-edit-area">
+            <div class="profile-picture-edit">
+              <img
+                src="https://placehold.co/120x120/695cfe/ffffff?text=G"
+                alt="Group picture"
+                id="new-group-pic"
+              />
+              <button class="change-pic-btn" id="new-group-pic-btn">
+                <i class="bx bx-camera"></i> Add Group Icon
+              </button>
+            </div>
+            <form class="profile-form">
+              <div class="form-group">
+                <label for="group-name">Group Name</label>
+                <input type="text" id="group-name" />
+              </div>
+            </form>
+          </div>
+          <div class="contact-list-for-group">
+            <div class="search-box">
+              <i class="bx bx-search icon"></i>
+              <input
+                type="text"
+                id="group-search"
+                placeholder="Search contacts..."
+              />
+            </div>
+            <ul class="chat-list-items"></ul>
+          </div>
+          <button class="create-group-btn"><i class="bx bx-check"></i></button>
+        </div>
+      </section>
+
+      <!-- ======================= MAIN CHAT SECTION ======================= -->
+      <main class="mainsection">
+        <div class="main-placeholder active">
+          <i class="bx bxs-message-rounded-dots"></i>
+          <h2>PingMe for Web</h2>
+          <p>Select a chat to start messaging.</p>
+        </div>
+
+        <div class="chat-view" id="chat-view">
+          <header class="chat-header">
+            <button class="back-btn mobile-back-btn">
+              <i class="bx bx-arrow-back"></i>
+            </button>
+            <img src="" alt="Profile picture" id="chat-header-img" />
+            <div class="chat-header-info">
+              <h3 id="chat-header-name"></h3>
+              <p id="chat-header-status">online</p>
+              <p id="chat-header-typing" class="typing-indicator"></p>
+            </div>
+            <div class="chat-header-icons">
+              <button><i class="bx bx-phone"></i></button>
+              <button><i class="bx bx-video"></i></button>
+              <button
+                id="manage-group-btn"
+                class="admin-only"
+                style="display: none"
+              >
+                <i class="bx bxs-user-detail"></i>
+              </button>
+              <button><i class="bx bx-dots-vertical-rounded"></i></button>
+            </div>
+          </header>
+          <div class="chat-body" id="chat-body">
+            <!-- Messages will be injected here -->
+          </div>
+          <footer class="chat-footer">
+            <emoji-picker id="shared-emoji-picker" class="light"></emoji-picker>
+
+            <button id="emoji-btn"><i class="bx bx-smile"></i></button>
+            <button id="attach-file-btn">
+              <i class="bx bx-paperclip"></i>
+            </button>
+            <input
+              type="text"
+              id="message-input"
+              placeholder="Type a message..."
+            />
+            <button id="send-btn"><i class="bx bxs-send"></i></button>
+          </footer>
+        </div>
+
+        <div class="status-view">
+          <button class="close-status-view" id="close-status-view">
+            &times;
+          </button>
+          <div class="status-progress-bars" id="status-progress-bars"></div>
+          <header class="status-header">
+            <div class="status-header-info">
+              <img src="" alt="Profile picture" id="status-user-img" />
+              <div>
+                <h4 id="status-user-name"></h4>
+                <time id="status-time"></time>
+              </div>
+            </div>
+            <div class="status-options">
+              <button class="status-options-btn" id="status-options-btn">
+                <i class="bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="status-menu" id="status-menu">
+                <button id="delete-status-btn">Delete</button>
+              </div>
+            </div>
+          </header>
+
+          <div class="status-image-container">
+            <img src="" alt="Status" class="status-image" id="status-image" />
+            <button class="status-nav prev" id="status-prev"></button>
+            <button class="status-nav next" id="status-next"></button>
+          </div>
+        </div>
+        <div id="group-management-panel" class="profile-panel">
+          <div class="profile-header">
+            <button
+              id="back-from-group-management"
+              class="back-btn"
+              aria-label="Go back"
+            >
+              <i class="bx bx-left-arrow-alt"></i>
+            </button>
+            <h3>Group Info</h3>
+            <button
+              id="edit-panel-btn"
+              class="btn-action"
+              style="margin-left: auto; display: none"
+            >
+              <i class="bx bx-pencil"></i> Edit
+            </button>
+          </div>
+
+          <div class="profile-body panel-body-styled">
+            <div class="panel-content-fixed">
+              <div id="group-details-container" class="modal-section">
+                <div class="view-mode">
+                  <div class="detail-item">
+                    <label>Group Name</label>
+                    <p id="view-group-name"></p>
+                  </div>
+                  <div class="detail-item">
+                    <label>Description</label>
+                    <p id="view-group-description"></p>
+                  </div>
+                </div>
+                <form
+                  id="edit-group-form"
+                  class="edit-mode profile-form"
+                  style="padding: 0"
+                >
+                  <div class="form-group">
+                    <label for="edit-group-name">Group Name</label>
+                    <input type="text" id="edit-group-name" />
+                  </div>
+                  <div class="form-group">
+                    <label for="edit-group-description">Description</label>
+                    <textarea id="edit-group-description" rows="2"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="edit-group-img">Group Image URL</label>
+                    <input type="text" id="edit-group-img" />
+                  </div>
+
+                  <div class="form-actions">
+                    <button
+                      type="button"
+                      id="cancel-edit-group-btn"
+                      class="panel-button secondary"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" class="save-btn panel-button primary">
+                      Save Changes
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div class="panel-content-scrollable">
+              <div class="modal-section">
+                <div class="members-header">
+                  <h4>Members</h4>
+                  <div class="admin-controls">
+                    <button
+                      id="open-add-members-modal-btn"
+                      class="panel-button primary"
+                    >
+                      <i class="bx bx-user-plus"></i> Add Members
+                    </button>
+                  </div>
+                </div>
+                <ul id="group-members-list" class="members-list"></ul>
+              </div>
+            </div>
+
+            <div class="panel-content-fixed">
+              <div class="modal-actions-container">
+                <div class="modal-section">
+                  <button id="leave-group-btn" class="panel-button danger">
+                    <i class="bx bx-log-out"></i> Leave Group
+                  </button>
+                </div>
+                <div class="admin-controls">
+                  <div class="danger-zone modal-section">
+                    <h4>Danger Zone</h4>
+                    <p>This action is permanent.</p>
+                    <button id="delete-group-btn" class="panel-button danger">
+                      <i class="bx bx-trash"></i> Delete Group
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- ========= Delete Account Modal ========== -->
+    <div id="delete-account-modal" class="modal-overlay">
+      <div class="delete-card modal-card">
+        <h3>Delete Your Account?</h3>
+        <p>
+          This action is irreversible. To confirm, please enter your password.
+        </p>
+        <form id="delete-account-form">
+          <div class="form-group">
+            <label for="delete-confirm-password">Password</label>
+            <input type="password" id="delete-confirm-password" required />
+          </div>
+          <div class="delete-options">
+            <button
+              type="button"
+              id="cancel-account-delete-btn"
+              class="cancel-btn"
+            >
+              CANCEL
+            </button>
+            <button type="submit" class="delete-btn confirm">
+              CONFIRM DELETION
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- ======================= PROFILE MODAL ======================= -->
+    <div id="profile-modal" class="modal-overlay">
+      <div class="profile-card modal-card">
+        <button id="close-profile-modal" aria-label="Close profile">
+          <i class="bx bx-x"></i>
+        </button>
+        <img
+          id="profile-modal-pic"
+          src="https://placehold.co/100x100/695cfe/ffffff?text=A"
+          alt="Your profile picture"
+          class="user-profile-pic"
+        />
+        <h2 id="profile-modal-name">Alex Smith</h2>
+        <p id="profile-modal-email">alex.smith@example.com</p>
+        <p id="profile-modal-about" class="about">
+          "Focused on creating beautiful and intuitive digital experiences."
+        </p>
+        <button class="edit-btn">Edit Profile</button>
+      </div>
+    </div>
+
+    <!-- ======================= DELETE CONFIRMATION MODAL ======================= -->
+    <div id="delete-modal" class="modal-overlay">
+      <div class="delete-card modal-card">
+        <h4>Delete Message?</h4>
+        <div class="delete-options">
+          <button id="delete-for-me-btn">DELETE FOR ME</button>
+          <button id="delete-for-everyone-btn">DELETE FOR EVERYONE</button>
+        </div>
+        <button id="cancel-delete-btn">CANCEL</button>
+      </div>
+    </div>
+
+    <!-- ======================= ADD MEMBERS MODAL ======================= -->
+    <div id="add-members-modal" class="modal-overlay">
+      <div class="modal-card" style="max-width: 400px">
+        <div class="modal-header">
+          <h3>Add New Members</h3>
+          <button id="close-add-members-modal" aria-label="Close">
+            <i class="bx bx-x"></i>
+          </button>
+        </div>
+        <div class="search-box" style="margin: 15px">
+          <i class="bx bx-search icon"></i>
+          <input
+            type="text"
+            id="add-member-search"
+            placeholder="Search friends..."
+          />
+        </div>
+        <ul
+          id="add-members-contact-list" 
+          class="contact-list-for-group"
+          style="max-height: 300px; overflow-y: auto"
+        ></ul>
+        <button
+          id="confirm-add-members-btn"
+          class="panel-button primary"
+          style="width: calc(100% - 30px); margin: 15px"
+        >
+          Add Selected Members
+        </button>
+      </div>
+    </div>
+    <div id="confirm-action-modal" class="modal-overlay">
+      <div class="delete-card modal-card">
+        <h4 id="confirm-modal-title">Are you sure?</h4>
+        <p id="confirm-modal-text">This action cannot be undone.</p>
+        <div class="delete-options">
+          <button id="cancel-action-btn" class="cancel-btn">CANCEL</button>
+          <button id="confirm-action-btn" class="delete-btn confirm">
+            CONFIRM
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="toast-notification"></div>
+
+    <!-- Hidden file inputs -->
+    <input
+      type="file"
+      id="profile-pic-input"
+      accept="image/*"
+      style="display: none"
+    />
+    <input
+      type="file"
+      id="status-pic-input"
+      accept="image/*"
+      style="display: none"
+    />
+    <input
+      type="file"
+      id="chat-file-input"
+      accept="image/*,.pdf,.doc,.docx,.txt"
+      style="display: none"
+    />
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"
+    ></script>
+    
+    <script src="/js/config.js"></script>
+    <script src="/socket.io/socket.io.js"></script> 
+    <script src="/js/chat.js"></script>
+    <script src="/js/sendMessages.js"></script> 
+    <script src="/js/admin.js"></script>
+    <script src="/js/profileChat.js"></script>
+    <script src="/js/contacts.js"></script>
+    <script src="/js/groupCreation.js"></script>
+    <script src="/js/accountSettings.js"></script>
+  </body>
+</html>

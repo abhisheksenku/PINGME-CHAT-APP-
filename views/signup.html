@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="/css/signup.css" />
+</head>
+<body>
+  <div class="main-container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <h2>Sign Up</h2>
+      <p>to continue to YourAccount</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="form-container">
+      <form id="signupForm">
+        <div class="input-group">
+          <input type="text" id="name" name="name" required />
+          <label for="name">Full Name:</label>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="email" name="email" required />
+          <label for="email">Email:</label>
+        </div>
+
+        <div class="input-group">
+          <input type="tel" id="phone" name="phone" required />
+          <label for="phone">Phone Number:</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" name="password" required />
+          <label for="password">Password:</label>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <p class="text-center">
+        Already have an account? <a href="/login">Login here</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="/js/config.js"></script>
+  <script src="/js/signup.js"></script>
+</body>
+</html>

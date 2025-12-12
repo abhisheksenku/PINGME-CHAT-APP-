@@ -1,0 +1,194 @@
+<!-- Declares the document type as HTML5 -->
+<!DOCTYPE html>
+
+<!-- Root HTML element; 'lang="en"' sets the language to English -->
+<html lang="en">
+  <head>
+    <!-- Specifies character encoding (UTF-8 covers most languages) -->
+    <meta charset="UTF-8" />
+
+    <!-- Ensures the layout adapts to the device width for mobile responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title displayed in the browser tab -->
+    <title>PingMe - Enhanced</title>
+    
+    <!-- Preconnect helps browsers establish early connections to Google's font servers for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Imports the "Poppins" font family with different font weights -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Imports Font Awesome icon library (version 6.4.0) for using icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Links to your local stylesheet (page.css) for custom styles -->
+    <link rel="stylesheet" href="/css/page.css">
+  </head>
+
+  <body>
+    <!-- Main wrapper for the entire page content -->
+    <div class="main">
+
+      <!-- HEADER SECTION -->
+      <header class="navbar">
+        <!-- Logo section: contains app logo and text -->
+        <div class="logo">
+          <img src="/images/logo.png" alt="logo" /> PingMe
+        </div>
+        
+        <!-- Navigation buttons: Log In and Sign Up -->
+        <div class="nav-links" id="nav-links">
+          <div class="nav-buttons">
+            <button class="btn login">Log In</button>
+            <button class="btn signup">Sign Up</button>
+          </div>
+        </div>
+
+        <!-- Right-side icons: dark mode toggle and hamburger menu for mobile -->
+        <div style="display: flex; align-items: center;">
+          <i class="fas fa-moon dark-mode-toggle" id="dark-mode-toggle"></i>
+          <i class="fas fa-bars hamburger" id="hamburger"></i>
+        </div>
+      </header>
+
+      <!-- DESCRIPTION SECTION (Hero Area) -->
+      <section class="description">
+        <div class="description-text">
+          <!-- Main headline -->
+          <h1>Message privately, connect freely.</h1>
+          <!-- Supporting text -->
+          <p>Simple, reliable, private messaging and calling for free, available all over the world.</p>
+          <!-- Call-to-action button -->
+          <button class="btn signup">Sign Up</button>
+        </div>
+      </section>
+
+      <!-- FEATURES SECTION -->
+      <section class="features">
+        <!-- Each feature-box represents one key app feature with icon, title, and description -->
+        <div class="feature-box">
+          <i class="fas fa-comment-dots"></i>
+          <h3>Fast Messaging</h3>
+          <p>Send and receive messages instantly.</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-lock"></i>
+          <h3>Privacy First</h3>
+          <p>Your chats are end-to-end encrypted.</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-globe"></i>
+          <h3>Connect Globally</h3>
+          <p>Talk to anyone, anywhere in the world.</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-paint-brush"></i>
+          <h3>Fun & Simple</h3>
+          <p>A clean, modern design that’s fun to use.</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-phone"></i>
+          <h3>Free Calls</h3>
+          <p>Crystal-clear voice and video calls.</p>
+        </div>
+
+        <div class="feature-box">
+          <i class="fas fa-image"></i>
+          <h3>Share Media</h3>
+          <p>Send photos, videos, and documents easily.</p>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS SECTION -->
+      <section class="how-it-works">
+        <!-- Section title -->
+        <h2 class="section-title">Get Started in 3 Easy Steps</h2>
+
+        <!-- Container holding all step boxes -->
+        <div class="steps-container">
+          <div class="step">
+            <i class="fas fa-user-plus step-icon"></i>
+            <h3>1. Create Account</h3>
+            <p>Sign up quickly with just your phone number. No complex forms.</p>
+          </div>
+
+          <div class="step">
+            <i class="fas fa-search step-icon"></i>
+            <h3>2. Find Friends</h3>
+            <p>Automatically sync your contacts to find friends who are already on PingMe.</p>
+          </div>
+
+          <div class="step">
+            <i class="fas fa-paper-plane step-icon"></i>
+            <h3>3. Start Chatting</h3>
+            <p>Enjoy secure and fast messaging with all the features you love.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SECTION -->
+      <section class="testimonials">
+        <h2 class="section-title">What Our Users Say</h2>
+
+        <!-- Grid layout for testimonials -->
+        <div class="testimonial-grid">
+
+          <!-- First testimonial -->
+          <div class="testimonial-card">
+            <p>"PingMe is a game-changer! The privacy features give me peace of mind, and the call quality is amazing."</p>
+            <div class="testimonial-author">
+              <img src="https://i.pravatar.cc/150?img=3" alt="User 1">
+              <div>
+                <strong>Deeksha K.</strong><br>
+                <small>Simulation Engineer</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second testimonial -->
+          <div class="testimonial-card">
+            <p>"I use this app every day to talk to my family overseas. It's simple, reliable, and completely free. Highly recommended!"</p>
+            <div class="testimonial-author">
+              <img src="https://i.pravatar.cc/150?img=2" alt="User 2">
+              <div>
+                <strong>Abhishek US.</strong><br>
+                <small>Freelance Designer</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    
+    <!-- FOOTER SECTION -->
+    <footer class="footer">
+      <!-- Reuses logo at bottom -->
+      <div class="logo">
+        <img src="/images/logo.png" alt="logo" /> PingMe
+      </div>
+
+      <!-- Copyright -->
+      <p>&copy; 2025 PingMe. All rights reserved.</p>
+
+      <!-- Social media icons -->
+      <div class="social-links">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </footer>
+
+    <!-- JavaScript file link for handling interactivity (e.g., dark mode, mobile nav) -->
+    <script src="/js/page.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+Here’s a **clear summary** of what that JavaScript code is doing 👇
+
+---
+
+### 🌐 **Overall Purpose**
+
+This script runs as soon as the HTML document has fully loaded (`DOMContentLoaded`).
+It handles **three main features** of your webpage:
+
+1. **Mobile navigation toggle (hamburger menu)**
+2. **Dark/light mode switching**
+3. **Opening Login and Signup pages**
+
+---
+
+### ⚙️ **Step-by-step Summary**
+
+#### 1. **Selects Key DOM Elements**
+
+It first grabs important HTML elements like:
+
+* The hamburger icon (`#hamburger`)
+* The navigation links (`#nav-links`)
+* Login and Signup buttons
+* The dark mode toggle icon
+* The `<body>` element (to apply dark mode classes)
+
+---
+
+#### 2. **Defines Helper Functions**
+
+Each function handles one specific task:
+
+* **`toggleMobileMenu()`**
+  → Adds or removes the `"active"` class from `.nav-links`, which shows or hides the mobile menu.
+
+* **`openLogin()` & `openSignup()`**
+  → Open `/login` and `/signup` pages in new browser tabs.
+
+* **`toggleTheme()`**
+  → Switches between light and dark themes depending on what’s currently active.
+
+* **`applyTheme(theme)`**
+  → Actually applies the chosen theme:
+
+  * Adds/removes `"dark-mode"` class on `<body>`
+  * Swaps the moon/sun icon
+  * Saves the user’s choice in `localStorage`
+
+* **`initializeTheme()`**
+  → Reads the previously saved theme from `localStorage` (default = light) and applies it when the page first loads.
+
+---
+
+#### 3. **Adds Event Listeners**
+
+Connects the functions to UI interactions:
+
+* Clicking the hamburger icon → toggles menu
+* Clicking Login or Signup → opens respective pages
+* Clicking the dark mode icon → toggles theme
+
+---
+
+#### 4. **Runs Initialization**
+
+Finally, when the page loads, it calls `initializeTheme()` to restore the saved light/dark theme preference.
+
+---
+
+✅ **In short:**
+This script makes the page **interactive and personalized**, handling:
+
+* Menu visibility
+* Theme persistence
+* Navigation to login/signup pages
