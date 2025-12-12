@@ -73,7 +73,7 @@ app.get("/chat", userAuthenticate.authenticate, (req, res) => {
 // ================== 7. SERVER STARTUP ==================
 (async () => {
     try {
-        await database.sync({ alter: true });
+        await database.sync({ alter: false });
         
         // Use server.listen() instead of app.listen() for Socket.io
         server.listen(port, () => {
